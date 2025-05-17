@@ -1,0 +1,10 @@
+# Menjalankan skrip
+py main.py
+
+# Untuk run test:
+- py -m pytest test/test_extract.py -v --cov --cov-report=html
+- py -m pytest test/test_load.py -v --cov --cov-report=html
+- py -m pytest test/test_transform.py -v --cov --cov-report=html
+
+# Url Google Sheets:
+https://docs.google.com/spreadsheets/d/1B5ESSIp0st53PveOnvlF3FDduU-sbqXakFt_FAaZ_a0/

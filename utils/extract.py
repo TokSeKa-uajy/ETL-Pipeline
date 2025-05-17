@@ -3,10 +3,7 @@ import re
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from transform import transform_data, transform_to_DataFrame
 from datetime import datetime
-
-from load import save_to_csv, store_to_postgre
 
 
 HEADERS = {
@@ -109,26 +106,3 @@ def scrape_book(base_url, start_page=1, delay=2):
             print(f"❌ Error saat proses scraping halaman {url}: {e}")
             break  # keluar dari loop saat error besar
     return data
-
-
-def main():
-    """Fungsi utama untuk keseluruhan proses scraping hingga menyimpannya."""
-    BASE_URL = 'https://fashion-studio.dicoding.dev/'
-    all_books_data = scrape_book(BASE_URL)
-    df = pd.DataFrame(all_books_data)
-    print(df)
-    if all_books_data:
-        DataFrame = transform_to_DataFrame(all_books_data)   # Mengubah variabel all_books_data menjadi DataFrame.
-        DataFrame = transform_data(DataFrame, 16000)   # Mentransformasikan data
-        
-        db_url = 'postgresql+psycopg2://developer:secretpassword@localhost:5432/produkdb'
-        store_to_postgre(DataFrame, db_url) 
-        
-        print(DataFrame)
-        save_to_csv(DataFrame)  # Menyimpan DataFrame ke dalam file CSV
-    else:
-        print("Tidak ada data yang ditemukan.")
-    
-
-if __name__ == '__main__':
-    main()

@@ -1,3 +1,5 @@
 requests~=2.32
 beautifulsoup4~=4.12
 pandas~=2.2
+google-auth ~=2.36
+google-api-python-client ~=2.152
